@@ -12,7 +12,7 @@ function LikeBtn() {
     const [likes, setLikes] = useState(0);
 
 
-    return <button className="like-button" onClick={() => setLikes(likes +1)}><FontAwesomeIcon icon={ faHeart } className="heart-icon"/>{likes} </button>
+    return <button className="like-button" title="Like this worry" aria-label="Like this worry" onClick={() => setLikes(likes +1)}><FontAwesomeIcon icon={ faHeart } className="heart-icon"/>{likes} </button>
 
 }
 

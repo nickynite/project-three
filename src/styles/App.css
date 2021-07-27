@@ -423,13 +423,13 @@ p {
 
 .RemoveBtn {
   margin-top: 70px;
-  margin-left: 100px;
+  margin-left: 120px;
   background-color: transparent;
   border: none;
 }
 
 .RemoveIcon {
-  color: #FFFF;
+  color: #353434;
 }
 
 .RemoveIcon:hover {

@@ -9,7 +9,7 @@ import Logo from "./Logo.js";
 import IntroText from "./IntroText.js";
 import LikeBtn from './LikeBtn.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -135,7 +135,7 @@ dbRef.child(key).remove();
             return (
               <div key={ worry.key }>
                 <li>
-                <button className="RemoveBtn" onClick={ () => handleRemove(worry.key) }><FontAwesomeIcon icon={ faTimesCircle } className="RemoveIcon"/></button>
+                <button className="RemoveBtn" title="Let go of this worry" aria-label="Let go of this worry" onClick={ () => handleRemove(worry.key) }><FontAwesomeIcon icon={ faTimes } className="RemoveIcon"/></button>
                   <p>{ worry.name }</p>
                   
                   <LikeBtn />

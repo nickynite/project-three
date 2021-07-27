@@ -110,7 +110,7 @@ ul {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  
+  // max-height: 250px;
 }
 
 ul li {
@@ -138,13 +138,13 @@ p {
 
 .RemoveBtn {
   margin-top: 70px;
-  margin-left: 100px;
+  margin-left: 120px;
   background-color: transparent;
   border: none;
 }
 
 .RemoveIcon {
-  color: #FFFF;
+  color: $charcoal;
 }
 
 .RemoveIcon:hover {
