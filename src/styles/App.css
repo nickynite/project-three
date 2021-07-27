@@ -301,6 +301,7 @@ body {
 
 .App {
   text-align: center;
+  position: relative;
 }
 
 .wrapper {
@@ -393,7 +394,6 @@ ul {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  max-height: 250px;
 }
 
 ul li {
@@ -444,5 +444,7 @@ footer {
   color: #FFFF;
   height: 50px;
   padding-top: 10px;
-  position: sticky;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }/*# sourceMappingURL=App.css.map */
