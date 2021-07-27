@@ -295,6 +295,10 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  min-height: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -382,7 +386,7 @@ input {
 .worryListContainer {
   margin-top: 50px;
   padding-bottom: 50px;
-  min-height: calc(70vh - 30px);
+  min-height: 70vh;
 }
 
 ul {
@@ -406,6 +410,7 @@ ul li {
   margin-bottom: 20px;
   -webkit-animation: float 9s ease-in-out infinite;
           animation: float 9s ease-in-out infinite;
+  position: relative;
 }
 
 p {
@@ -432,10 +437,12 @@ p {
 }
 
 footer {
-  background-color: #353434;
+  font-family: "Lato", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  background-color: #D15226;
   color: #FFFF;
-  height: 30px;
-  position: relative;
-  left: 0;
-  bottom: 0;
+  height: 50px;
+  padding-top: 10px;
+  position: sticky;
 }/*# sourceMappingURL=App.css.map */

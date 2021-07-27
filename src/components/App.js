@@ -115,11 +115,12 @@ dbRef.child(key).remove();
   <div id="myForm" className="myForm">
     <h2>Submit a worry to release it into the ether</h2>
         <form action="submit" id ="form" onSubmit={ handleClick }>
-          <label htmlFor="newWorry"></label>
+          <label htmlFor="yourWorry"></label>
           <input
           type="text"
-          id="newWorry"
-          maxLength="40"
+          id="yourWorry"
+          placeholder="I'm worried about..."
+          maxLength="50"
           onChange={ handleChange }
           value={ userInput } />
         </form>
@@ -145,7 +146,8 @@ dbRef.child(key).remove();
         </ul>
   </div>
 
-  <footer> Created at Juno College 2021 </footer>   
+  <footer> Created at Juno College 2021 </footer> 
+  
 
 </div>
   )
