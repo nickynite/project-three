@@ -1,0 +1,19 @@
+/* Arrow down animation */
+@keyframes pulse {
+	to {
+		transform: scale(1.3);
+	}
+}
+
+.arrow-down {
+	display: inline-block;
+
+
+	&:hover {
+		animation-name: pulse;
+		animation-duration: 0.7s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+}
