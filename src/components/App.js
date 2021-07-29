@@ -38,13 +38,13 @@ useEffect( () => {
       name: data[key].userWorry,
       likes: 0
     }
-
+    
     newState.push(worryObject);
     console.log(worryObject.likes);
   } 
     setWorryList(newState);
   })
-})
+}, [])
 
 // Will run anytime there is a change in the input this event is attached to
 const handleChange = (event) =>{
