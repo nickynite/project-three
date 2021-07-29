@@ -231,21 +231,42 @@ html {
   overflow: hidden;
 }
 
-/* Arrow down animation */
-@-webkit-keyframes pulse {
-  to {
-    transform: scale(1.3);
+h1 {
+  padding-bottom: 20px;
+  color: #D15226;
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  padding-top: 50px;
+}
+@media only screen and (max-width: 600px) {
+  h3 {
+    padding-top: 10px;
   }
 }
-@keyframes pulse {
-  to {
-    transform: scale(1.3);
-  }
+
+p {
+  padding-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 90px;
+  color: white;
 }
-.arrow-down {
-  display: inline-block;
+
+.arrowDown {
+  color: #D15226;
+  font-size: 50px;
+  margin-top: 30px;
 }
-.arrow-down:hover {
+.arrowDown:hover {
   -webkit-animation-name: pulse;
           animation-name: pulse;
   -webkit-animation-duration: 0.7s;
@@ -258,6 +279,17 @@ html {
           animation-direction: alternate;
 }
 
+/* Arrow down animation */
+@-webkit-keyframes pulse {
+  to {
+    transform: scale(1.3);
+  }
+}
+@keyframes pulse {
+  to {
+    transform: scale(1.3);
+  }
+}
 .img-logo {
   padding-top: 50px;
   max-height: 40vh;
@@ -291,6 +323,27 @@ html {
     transform: translatey(0px);
   }
 }
+.submitWorry {
+  font-family: "lato", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: #FFFF;
+  background-color: #353434;
+  border: none;
+  text-decoration: none;
+  width: 30%;
+  padding: 15px 0 15px 0;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #353434;
+  opacity: 0.8;
+}
+.submitWorry:hover {
+  cursor: pointer;
+  background: #353434;
+  color: #FFFF;
+  opacity: 1;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -322,66 +375,21 @@ header {
   padding-bottom: 50px;
 }
 
-h1 {
-  padding-bottom: 20px;
-  color: #D15226;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 300;
-  padding-bottom: 15px;
-}
-
-h3 {
-  padding-top: 50px;
-}
-
-.arrow-down {
-  color: #D15226;
-  font-size: 50px;
-  margin-top: 30px;
-}
-
-.like-button {
-  background-color: transparent;
-  color: #353434;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-
-.heart-icon {
-  color: #eb3e5b;
-  margin-right: 10px;
-}
-
 .myForm {
   padding-top: 30px;
 }
 
 input {
-  width: 50%;
+  width: 60%;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 15px;
   font-family: "Lato", sans-serif;
-  font-size: 1.8rem;
-}
-
-.submitWorry {
-  font-family: "lato", sans-serif;
-  text-transform: uppercase;
   font-size: 1.5rem;
-  color: #FFFF;
-  background-color: #353434;
-  border: none;
-  text-decoration: none;
-  width: 30%;
-  padding: 15px 0 15px 0;
+  border: 1px solid #353434;
 }
-
-.submitWorry:hover {
-  cursor: pointer;
+input:focus {
+  outline: none !important;
+  border: 1px solid #D15226;
 }
 
 .worryListContainer {
@@ -413,17 +421,23 @@ ul li {
   position: relative;
 }
 
-p {
-  padding-top: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
-  height: 90px;
-  color: white;
+.likeButton {
+  background-color: transparent;
+  color: #353434;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.heartIcon {
+  color: #eb3e5b;
+  margin-right: 10px;
 }
 
 .RemoveBtn {
-  margin-top: 70px;
-  margin-left: 120px;
+  margin-top: 60px;
+  margin-left: 180px;
+  padding-bottom: 5px;
   background-color: transparent;
   border: none;
 }
@@ -431,20 +445,26 @@ p {
 .RemoveIcon {
   color: #353434;
 }
-
 .RemoveIcon:hover {
   cursor: pointer;
 }
 
 footer {
   font-family: "Lato", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   background-color: #D15226;
   color: #FFFF;
   height: 50px;
-  padding-top: 10px;
+  padding-top: 15px;
   position: absolute;
   width: 100%;
   bottom: 0;
+}
+footer a {
+  text-decoration: none;
+  color: #FFFF;
+}
+footer a:hover {
+  color: #353434;
 }/*# sourceMappingURL=App.css.map */

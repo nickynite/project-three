@@ -12,7 +12,7 @@ const IntroText = () => {
             <h3>See others' worries and let go of yours.</h3>
             
         <a href="#myForm">
-            <FontAwesomeIcon icon={ faChevronDown } className="arrow-down"/>
+            <FontAwesomeIcon icon={ faChevronDown } className="arrowDown"/>
         </a>
     </div>
     )

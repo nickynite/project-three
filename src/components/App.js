@@ -8,9 +8,11 @@ import "../styles/App.css";
 import Logo from "./Logo.js";
 import IntroText from "./IntroText.js";
 import LikeBtn from './LikeBtn.js';
+import Footer from './Footer.js';
+// import Font Awesome Icons and Sweet Alert2
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
+import Swal from 'sweetalert2';
 
 
 function App() {
@@ -19,9 +21,8 @@ function App() {
 const [ worryList, setWorryList ] = useState([]);
 const [ userInput, setUserInput ] = useState("");
 
-// a variable that holds a reference to the database
+// A variable that holds a reference to the database
 const dbRef = firebase.database().ref();
-
 
 // useEffect for my Firebase value listener
 useEffect( () => {
@@ -32,21 +33,20 @@ useEffect( () => {
   
   for (let key in data) {
 
-    // creating an object with key + name(worry), and then push the object into newState empty array.
+    // Creating an object with key + name(worry), and then push the object into newState empty array.
     const worryObject = {
       key: key,
       name: data[key].userWorry,
-      likes: 4
+      likes: 0
     }
     newState.push(worryObject);
     console.log(worryObject.likes);
-
-  }  
+  } 
     setWorryList(newState);
   })
 }, [])
 
-// will run anytime there is a change in the input this event is attached to
+// Will run anytime there is a change in the input this event is attached to
 const handleChange = (event) =>{
   // Update the state of our app component to the current value of the input field, handleChange is attached down below on the input of the form.
   setUserInput(event.target.value);
@@ -54,22 +54,31 @@ const handleChange = (event) =>{
 
 // This function is attached to the input button of the form
 const handleClick = (event) => {
-  event.preventDefault();
-  console.log("this form was submitted!");
 
-// creating a reference to the database
-  const dbRef = firebase.database().ref();
-
-//  Pushing the value that userInput has to the database
-const worryObject = { userWorry : userInput, likes : 4 }
-  // dbRef.push(userInput);
-  dbRef.push(worryObject);
-  console.log(worryObject.likes);
-// resetting the state to an empty string
-  setUserInput("");
+  // Error handling with Sweet Alert2 alert box
+  if (userInput === "") {
+    event.preventDefault();
+    return (
+      Swal.fire({
+        title: "Oh no!",
+        text:"You forgot to type in your worry!",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#ee7249",
+      })
+    )
+  } else {
+    event.preventDefault();
+    console.log("this form was submitted!");
+    // creating a reference to the database
+      const dbRef = firebase.database().ref();
+  //  Pushing the value that userInput has to the database
+  const worryObject = { userWorry : userInput, likes : 0 }
+    // dbRef.push(userInput);
+    dbRef.push(worryObject);
+  // resetting the state to an empty string
+    setUserInput("");
+  }
 }
-
-
 
 // a function for removing list items
 const handleRemove = (key) => {
@@ -80,29 +89,8 @@ dbRef.child(key).remove();
 }
 
 
-
-
-
-// // A function that will dislay an error message if nothing is entered
-// const handleError = () => {
-//   setErrorMessage("Please release your worry");
-// }
-
-// // A function that submits users input to firebase
-// const handleSubmit = () => {
-//   userInput ? acceptSubmit() : handleError()
-//   setUserInput("");
-// }
-
-// // a function that pushes the users post to database
-// const acceptSubmit = () => {
-//   dbRef.push(userInput);
-//   setErrorMessage("");
-// }
-
-
+// output of the app
   return (
-
     <div className="App">
       <div className="wrapper">
         <header>
@@ -111,7 +99,7 @@ dbRef.child(key).remove();
         </header>  
       </div>  
 
-{/* FORM BEGINS HERE */}
+{/* Form begins here */}
   <div id="myForm" className="myForm">
     <h2>Submit a worry to release it into the ether</h2>
         <form action="submit" id ="form" onSubmit={ handleClick }>
@@ -128,7 +116,7 @@ dbRef.child(key).remove();
         <button className="submitWorry" onClick={ handleClick }>Submit</button>
   </div>
 
-    
+    {/* Container for user input */}
   <div className="worryListContainer">
         <ul>
           { worryList.map((worry) => {
@@ -137,7 +125,7 @@ dbRef.child(key).remove();
                 <li>
                 <button className="RemoveBtn" title="Let go of this worry" aria-label="Let go of this worry" onClick={ () => handleRemove(worry.key) }><FontAwesomeIcon icon={ faTimes } className="RemoveIcon"/></button>
                   <p>{ worry.name }</p>
-                  
+
                   <LikeBtn />
                 </li>
               </div>  
@@ -146,11 +134,10 @@ dbRef.child(key).remove();
         </ul>
   </div>
 
-  <footer> Created at Juno College 2021 </footer> 
-  
+  <Footer />
 
 </div>
-  )
+)
 };
 
 export default App;

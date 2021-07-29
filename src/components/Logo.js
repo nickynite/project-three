@@ -4,10 +4,7 @@ import froglogo from '../assets/froglogo.png';
 
 const Logo = () => {
     return (
-
-        <img className="img-logo" src={ froglogo } alt="worry wart"/>
-    
-        
+    <img className="img-logo" src={ froglogo } alt="worry wart"/>    
     )
 }
 

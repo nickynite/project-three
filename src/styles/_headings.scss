@@ -1,0 +1,28 @@
+h1 {
+    padding-bottom: 20px;
+    color: $orange;
+}
+  
+h2 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+  
+h3 {
+  font-size: 2rem;
+  font-weight: 400;
+  padding-top: 50px;
+  
+  @media only screen and (max-width: 600px) {
+        padding-top: 10px;
+  }
+}
+
+p {
+  padding-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 90px;
+  color: white;    
+}
