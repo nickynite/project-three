@@ -28,7 +28,6 @@ const dbRef = firebase.database().ref();
 useEffect( () => {
   dbRef.on('value', (response) => {
     const data = response.val();
-    // console.log(data);
     const newState = [];
   
   for (let key in data) {
@@ -39,6 +38,7 @@ useEffect( () => {
       name: data[key].userWorry,
       likes: 0
     }
+    
     newState.push(worryObject);
     console.log(worryObject.likes);
   } 
@@ -89,7 +89,7 @@ dbRef.child(key).remove();
 }
 
 
-// output of the app
+// Output of the app
   return (
     <div className="App">
       <div className="wrapper">
