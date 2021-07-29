@@ -51,7 +51,16 @@ header {
 }
 
 .myForm {
-  padding-top: 30px;  
+  padding-top: 30px;
+
+  @media only screen and (min-width: 320px)
+	and (max-width: 600px) {
+        padding-top: 150px;
+	}
+
+  @media only screen and (min-width: 601px) {
+        padding-top: 150px;
+	}
 }
 
 input {
@@ -71,7 +80,7 @@ input {
 .worryListContainer {
   margin-top: 50px;
   padding-bottom: 50px;
-  min-height: 70vh;
+  min-height: 60vh;
 }
 
 ul {
