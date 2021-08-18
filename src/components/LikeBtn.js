@@ -6,10 +6,15 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 // like button function - stretch goal was to connect likes count to firebase, but was unsuccessful. 
 
 
-function LikeBtn() {
-    const [likes, setLikes] = useState(0);
+function LikeBtn(props) {
+   const handleClick = () => {
+    //  this function will increment the likes.
+    console.log("like button click", props);
+    props.incrementLikes(props.id);
 
-    return <button className="likeButton" title="Like this worry" aria-label="Like this worry" onClick={(like) => setLikes(likes +1)}><FontAwesomeIcon icon={ faHeart } className="heartIcon"/>{likes} </button>
+   }
+
+    return <button className="likeButton" title="Like this worry" aria-label="Like this worry" onClick={ handleClick }><FontAwesomeIcon icon={ faHeart } className="heartIcon"/>{props.likes} </button>
 }
 
 export default LikeBtn;
