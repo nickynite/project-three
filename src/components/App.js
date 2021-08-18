@@ -1,5 +1,11 @@
 // import from react
 import { useState, useEffect } from 'react';
+
+// import Font Awesome Icons and Sweet Alert2
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+
 // import firebase
 import firebase from '../firebase.js';
 // import styles
@@ -9,10 +15,6 @@ import Logo from "./Logo.js";
 import IntroText from "./IntroText.js";
 import LikeBtn from './LikeBtn.js';
 import Footer from './Footer.js';
-// import Font Awesome Icons and Sweet Alert2
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import Swal from 'sweetalert2';
 
 
 function App() {
@@ -21,27 +23,30 @@ function App() {
 const [ worryList, setWorryList ] = useState([]);
 const [ userInput, setUserInput ] = useState("");
 
-// A variable that holds a reference to the database
-const dbRef = firebase.database().ref();
 
 // useEffect for my Firebase value listener
 useEffect( () => {
+
+  // A variable that holds a reference to the database
+  const dbRef = firebase.database().ref();
+
   dbRef.on('value', (response) => {
     const data = response.val();
     const newState = [];
-  
-  for (let key in data) {
+    console.log(data)
 
-    // Creating an object with key + name(worry), and then push the object into newState empty array.
-    const worryObject = {
-      key: key,
-      name: data[key].userWorry,
-      likes: 0
-    }
-    
-    newState.push(worryObject);
-    console.log(worryObject.likes);
-  } 
+    for (let key in data) {
+
+      // Creating an object with key + name(worry), and then push the object into newState empty array.
+      const worryObject = {
+        key: key,
+        worryText: data[key].worryText,
+        likes: data[key].likes
+      }
+      
+      newState.push(worryObject);
+    } 
+
     setWorryList(newState);
   })
 }, [])
@@ -53,11 +58,12 @@ const handleChange = (event) =>{
 }
 
 // This function is attached to the input button of the form
-const handleClick = (event) => {
+const handleSubmit = (event) => {
+
+  event.preventDefault();
 
   // Error handling with Sweet Alert2 alert box
   if (userInput === "") {
-    event.preventDefault();
     return (
       Swal.fire({
         title: "Oh no!",
@@ -67,12 +73,12 @@ const handleClick = (event) => {
       })
     )
   } else {
-    event.preventDefault();
+    
     console.log("this form was submitted!");
     // creating a reference to the database
       const dbRef = firebase.database().ref();
   //  Pushing the value that userInput has to the database
-  const worryObject = { userWorry : userInput, likes : 0 }
+  const worryObject = { worryText : userInput, likes : 0 }
     // dbRef.push(userInput);
     dbRef.push(worryObject);
   // resetting the state to an empty string
@@ -80,12 +86,19 @@ const handleClick = (event) => {
   }
 }
 
+const incrementLikes = (key) => {
+  const likesRef = firebase.database().ref(`${ key }/likes`); 
+
+  likesRef.set(firebase.database.ServerValue.increment(1))
+
+}
+
 // a function for removing list items
 const handleRemove = (key) => {
-// Create a reference to our Firebase database
-const dbRef = firebase.database().ref();
-// Go get the specific node (ie the property) which we want to delete in Firebase and REMOVE IT.
-dbRef.child(key).remove();
+  // Create a reference to our Firebase database
+  const dbRef = firebase.database().ref();
+  // Go get the specific node (ie the property) which we want to delete in Firebase and REMOVE IT.
+  dbRef.child(key).remove();
 }
 
 
@@ -102,7 +115,7 @@ dbRef.child(key).remove();
 {/* Form begins here */}
   <div id="myForm" className="myForm">
     <h2>Submit a worry to release it into the ether</h2>
-        <form action="submit" id ="form" onSubmit={ handleClick }>
+        <form id ="form" onSubmit={ handleSubmit }>
           <label htmlFor="yourWorry"></label>
           <input
           type="text"
@@ -111,9 +124,8 @@ dbRef.child(key).remove();
           maxLength="50"
           onChange={ handleChange }
           value={ userInput } />
-        </form>
-
-        <button className="submitWorry" onClick={ handleClick }>Submit</button>
+          <button className="submitWorry" type="submit">Submit</button>
+        </form>      
   </div>
 
     {/* Container for user input */}
@@ -124,9 +136,9 @@ dbRef.child(key).remove();
               <div key={ worry.key }>
                 <li>
                 <button className="RemoveBtn" title="Let go of this worry" aria-label="Let go of this worry" onClick={ () => handleRemove(worry.key) }><FontAwesomeIcon icon={ faTimes } className="RemoveIcon"/></button>
-                  <p>{ worry.name }</p>
+                  <p>{ worry.worryText }</p>
 
-                  <LikeBtn />
+                  <LikeBtn  likes={ worry.likes } incrementLikes={ incrementLikes } id={ worry.key }/>
                 </li>
               </div>  
             )
@@ -141,3 +153,5 @@ dbRef.child(key).remove();
 };
 
 export default App;
+
+ 

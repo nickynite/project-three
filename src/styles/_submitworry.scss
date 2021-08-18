@@ -11,6 +11,8 @@
     transition: all 0.3s ease-in-out;
     border: 1px solid $charcoal;
     opacity: 0.8;
+    display: block;
+    margin: 0 auto;
     
     &:hover {
       cursor: pointer;
